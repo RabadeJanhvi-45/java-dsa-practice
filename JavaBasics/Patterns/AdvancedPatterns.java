@@ -1,4 +1,4 @@
-import java.util.*;
+// import java.util.*;
 public class AdvancedPatterns{
 
     public  static void hollow_rectangle(int totRows, int totCols){
@@ -149,7 +149,7 @@ public static void half_pyramid(int n)
         }
     }
       public static void HollowRhombus(int n){
-        int cnt =1;
+        // int cnt =1;
         for(int i=1;i<=n;i++){
             //space n-i
             for(int j=1;j<=(n-i);j++){
@@ -196,6 +196,32 @@ public static void half_pyramid(int n)
             System.out.println();
         }
     }
+
+    public static void number_Pyramid(int n){
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n-i;j++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=(2*i - 1);j++){
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+    public static void palindromic_pattern(int n){
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n-i;j++){
+                System.out.print(" ");
+            }
+            for(int j=i;j>=1;j--){
+                System.out.print(j+ " ");
+            }
+            for(int j=2;j<=i;j++){
+                System.out.print(j+ " ");
+            }
+            System.out.println();
+        }
+    }
     public static void main(String args[])
     {
         // hollow_rectangle(4,4);
@@ -205,6 +231,8 @@ public static void half_pyramid(int n)
         // ButterflyPattern(7);
         // SolidRhombus(7);   
         // HollowRhombus(7);  
-        Diamond(4);   
+        // Diamond(4);  
+        // number_Pyramid(7); 
+        palindromic_pattern(4); 
     }
 }

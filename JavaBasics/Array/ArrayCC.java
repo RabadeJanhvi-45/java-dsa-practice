@@ -103,7 +103,7 @@ public class ArrayCC{
     public static void print_subarr(int arr[]){
         int ts=0;
         for(int i=0;i<arr.length;i++){
-            int start=arr[i];
+            int start=i;
             for(int j=i;j<arr.length;j++){
                 int end=j;
                 for(int k=start;k<=end;k++){
@@ -116,27 +116,129 @@ public class ArrayCC{
         }
          System.out.println("Total Subarray = "+ts);
     }
-    public static void maxSubayyay(int arr[]){
+    public static void maxSubayyaysum(int arr[]){
         int ts=0;
+        int currentsum=0;
+        int maxsum=Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
-            int start=arr[i];
+            int start=i;
+
             for(int j=i;j<arr.length;j++){
                 int end=j;
+                currentsum = 0;
                 for(int k=start;k<=end;k++){
-                    System.out.print(arr[k]+ "  ");
+                   //subarry sum
+                   currentsum +=arr[k];
+                }
+               
+                if(maxsum<currentsum){
+                    maxsum=currentsum;
+                      System.out.println("Max Subarray Sum = "+maxsum);
                 }
                 ts++;
-                System.out.println();
+               
             }
-            System.out.println();
+            
         }
          System.out.println("Total Subarray = "+ts);
+         System.out.println("Max Subarray Sum = "+maxsum);
+    }
+
+    public static void maxSubayyaysumpefix(int arr[]){
+        int ts=0;
+        int currentsum=0;
+        int maxsum=Integer.MIN_VALUE;
+        int [] prefix=new int[arr.length];
+        prefix[0]=arr[0];
+        for(int i=1;i<prefix.length;i++){
+            
+            prefix[i]=prefix[i-1] + arr[i];
+        }
+
+        for(int i=0;i<arr.length;i++){
+            int start=i;
+
+            for(int j=i;j<arr.length;j++){
+                int end=j;
+                currentsum = start == 0 ? prefix[end] : prefix[end]-prefix[start-1];
+            
+                if(maxsum<currentsum){
+                    maxsum=currentsum;
+                      System.out.println("Max Subarray Sum = "+maxsum);
+                }
+                ts++;
+               
+            }
+            
+        }
+         System.out.println("Total Subarray = "+ts);
+         System.out.println("Max Subarray Sum = "+maxsum);
+    }
+
+    public static void kadanesalgomaxsumarry(int arr[]){
+        int maxsum=Integer.MIN_VALUE;
+
+        int currsum=0;
+
+        for(int i=0;i<arr.length;i++){
+            currsum=currsum + arr[i];
+            if(currsum<0){
+                currsum=0;
+            }
+            maxsum=Math.max(currsum,maxsum);
+        }
+          System.out.println("Max Subarray Sum = "+maxsum);
+    }
+    //trappedRainwater
+
+    public static int trappedRainwater(int height[]){
+        //calculate left max boundary - array
+        int leftMax[] =new int[height.length];
+        leftMax[0]=height[0];
+        for(int i=1;i<height.length;i++){
+            leftMax[i]=Math.max(height[i],leftMax[i-1]);
+        }
+        //calculate right max moundary - array
+        int rightmax[]=new int[height.length];
+        rightmax[height.length-1]=height[height.length-1];
+        for(int i=height.length-2;i>=0;i--){
+            rightmax[i]=Math.max(height[i],rightmax[i+1]);
+        }
+        int trappedRainwater=0;
+        //loop
+        for(int i=0;i<height.length;i++){
+            //waterlevel=min(leftmax bound,rightmax bound)
+            int waterlevel=Math.min(leftMax[i],rightmax[i]);
+
+            //trapped water=waterlevel-height[i]
+            trappedRainwater+= (waterlevel-height[i]);
+        }
+        
+        return trappedRainwater;
+    }
+    public static int buyandSellStocks(int[] prices){
+        //buyprice
+        int buyPrice=Integer.MAX_VALUE;
+        int maxProfit=0;
+
+        for(int i=0;i<prices.length;i++){
+            if(buyPrice<prices[i]){
+                int profit=prices[i]-buyPrice;//today's Profit
+                maxProfit=Math.max(maxProfit,profit);//global profit
+            }
+            else{
+                buyPrice=prices[i];
+            }
+        }
+        return maxProfit;
     }
     public static void main(String[] args){
     
     
     int numbers[] = {1,2,5,6,7,8,9,10,12,15};
-    int arr[]={1,2,3,4,5};
+    int arr[]={2,4,6,8,10};
+    int height[]={4,2,0,6,3,2,5};
+    int prices[]={7,1,5,3,6,4};
     // int key =20;
     // update(marks);
     // int index= linearsearch(numbers,key);
@@ -161,7 +263,13 @@ public class ArrayCC{
     // }
 
 
-    // pairs_arr(arr);
-    print_subarr(arr);
+    // // pairs_arr(arr);
+    // maxSubayyaysum(arr);
+    // maxSubayyaysumpefix(arr);
+    // kadanesalgomaxsumarry(arr);
+    // trappedRainwater(height);
+    // System.out.println(trappedRainwater(height));
+     System.out.println(buyandSellStocks(prices));
     }
+
 }

@@ -31,9 +31,8 @@ public class InsertionSort {
         Integer arr[]={5,4,1,3,2};
         // insertionsort(arr);
         // printArr(arr);
-        // Arrays.sort(arr);
+        Arrays.sort(arr);
          Arrays.sort(arr,Collections.reverseOrder());
-    
         printArr(arr);
     }
 }

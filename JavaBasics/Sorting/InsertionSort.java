@@ -15,11 +15,11 @@ public class InsertionSort {
             arr[prev+1]=curr;
         }
     }
-    // public static void printArr(int arr[]){
-    //     for(int i=0;i<arr.length;i++){
-    //         System.out.print(arr[i]+" ");
-    //     }
-    // }
+    public static void printArr(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
     public static void printArr(Integer arr[]){
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
@@ -27,12 +27,13 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-        // int arr[]={5,4,1,3,2};
-        Integer arr[]={5,4,1,3,2};
-        // insertionsort(arr);
-        // printArr(arr);
-        Arrays.sort(arr);
-         Arrays.sort(arr,Collections.reverseOrder());
+        int arr[]={5,4,1,3,2};
+         insertionsort(arr);
         printArr(arr);
+        Integer arr1[]={5,4,1,3,2};
+       
+        Arrays.sort(arr);
+         Arrays.sort(arr1,Collections.reverseOrder());
+        printArr(arr1);
     }
 }
